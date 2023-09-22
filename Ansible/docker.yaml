@@ -8,24 +8,24 @@
         update_cache: yes   
 
     - name: Build Docker Image
-      command: docker build -t petstore .
+      command: docker build -t jenkins1 .
       args:
-        chdir: /var/lib/jenkins/workspace/petstore
+        chdir: /var/lib/jenkins/workspace/jenkins1
 
     - name: tag image
-      command: docker tag petstore:latest sevenajay/petstore:latest 
+      command: docker tag petstore:latest rajuboddu/jenkins1:latest 
 
     - name: Log in to Docker Hub
       community.docker.docker_login:
         registry_url: https://index.docker.io/v1/
-        username: dockerhub username
-        password: dockerhub password/PAT
+        username: rajuboddu
+        password: dckr_pat_CUppp87mkJQdeiIHWobc-0NBH1s
 
     - name: Push image
-      command: docker push sevenajay/petstore:latest
+      command: docker push rajuboddu/jenkins1:latest
 
     - name: Trivy Scan
-      command: trivy image sevenajay/petstore:latest > trivy.txt
+      command: trivy image rajuboddu/jenkins1:latest > trivy.txt
 
     - name: Run container
-      command: docker run -d --name pet1 -p 8081:8080 sevenajay/petstore:latest
+      command: docker run -d --name pet1 -p 8081:8080 rajuboddu/jenkins1:latest
