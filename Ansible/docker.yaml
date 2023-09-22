@@ -24,8 +24,5 @@
     - name: Push image
       command: docker push rajuboddu/jenkins1:latest
 
-    - name: Trivy Scan
-      command: trivy image rajuboddu/jenkins1:latest > trivy.txt
-
     - name: Run container
       command: docker run -d --name pet1 -p 8081:8080 rajuboddu/jenkins1:latest
